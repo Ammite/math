@@ -29,8 +29,10 @@
 
             if( parseInt(answer) == c ){
                 document.getElementById('wrong_or_correct').innerHTML = 'Правильно!';
+                document.getElementById('wrong_or_correct').style = 'color: green;';
             }else{
                 document.getElementById('wrong_or_correct').innerHTML = 'Неправильно!';
+                document.getElementById('wrong_or_correct').style = 'color: red;';
             }
             let time_now = new Date().getTime();
             let timer = time_now - timing;
