@@ -1,1 +1,77 @@
-<h1>math</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page (?)</title>
+    <style>
+        h1{
+            color: blueviolet;
+            font-size: 48px;
+        }
+        p{
+            color: darkviolet;
+            font-size: 32px;
+        }
+        body{
+            background-color: whitesmoke;
+        }
+    </style>
+    <script>
+        let timing = 0;
+        function calculati(){
+            var a = document.getElementById('a_var').innerHTML;
+            var b = document.getElementById('b_var').innerHTML;
+
+            var c = a * b;
+
+            var answer = document.getElementById('c_var').value;
+
+            if( parseInt(answer) == c ){
+                document.getElementById('wrong_or_correct').innerHTML = 'Правильно!';
+            }else{
+                document.getElementById('wrong_or_correct').innerHTML = 'Неправильно!';
+            }
+            let time_now = new Date().getTime();
+            let timer = time_now - timing;
+            timer = Math.floor( (timer % (1000 * 60)) / 1000 );
+            let time_text = 'Успел за ' + timer + 'с.';
+
+            let logger = "Logged. Variables: " + a + " " + b + " " + c + " " + answer + " " + timer;
+            console.log(logger);
+
+            document.getElementById("c_var").value = "";
+            document.getElementById('timer').innerHTML = time_text;
+            generate_numbers();
+        }
+        function generate_random(min, max){
+            return Math.floor(Math.random() * (max-min) + min)
+        }
+        function generate_numbers(){
+            var a = generate_random(2, 10);
+            var b = generate_random(2, 10);
+
+            document.getElementById('a_var').innerHTML = a;
+            document.getElementById('b_var').innerHTML = b;
+
+            timing = new Date().getTime();
+        }
+        window.onload = generate_numbers;
+    </script>
+</head>
+<body>
+    <h1>Bruh</h1>
+    <p style="font-size: 38px;" id="timer">Успел за ... с.</p>
+
+    <p id="a_var" style="display:inline">A</p>
+    <p style="display:inline">*</p>
+    <p id="b_var" style="display:inline">B</p>
+    <p style="display:inline">=</p>
+    <input type="number" id="c_var" style="display:inline">
+    <button onclick="calculati()">Проверить</button>
+    <br><br>
+    <p id="wrong_or_correct"></p>
+
+
+</body>
+</html>
