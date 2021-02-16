@@ -19,6 +19,9 @@
     </style>
     <script>
         let timing = 0;
+        let score = 0;
+        let tries = 0;
+
         function calculati(){
             var a = document.getElementById('a_var').innerHTML;
             var b = document.getElementById('b_var').innerHTML;
@@ -30,10 +33,12 @@
             if( parseInt(answer) == c ){
                 document.getElementById('wrong_or_correct').innerHTML = 'Правильно!';
                 document.getElementById('wrong_or_correct').style = 'color: green;';
+                score ++;
             }else{
                 document.getElementById('wrong_or_correct').innerHTML = 'Неправильно!';
                 document.getElementById('wrong_or_correct').style = 'color: red;';
             }
+            tries++;
             let time_now = new Date().getTime();
             let timer = time_now - timing;
             timer = Math.floor( (timer % (1000 * 60)) / 1000 );
@@ -42,8 +47,11 @@
             let logger = "Logged. Variables: " + a + " " + b + " " + c + " " + answer + " " + timer;
             console.log(logger);
 
+            let scoring = "Баллы: " + score + "/" + tries;
+
             document.getElementById("c_var").value = "";
             document.getElementById('timer').innerHTML = time_text;
+            document.getElementById('score').innerHTML = scoring;
             generate_numbers();
         }
         function generate_random(min, max){
@@ -63,6 +71,7 @@
 </head>
 <body>
     <h1>Аян</h1>
+    <p style="font-size: 38px;" id="score">Баллы: </p>
     <p style="font-size: 38px;" id="timer">Успел за ... с.</p>
 
     <p id="a_var" style="display:inline">A</p>
